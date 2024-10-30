@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "products_index", media: "all" %>
-<% if session[:seller].present? %>
+<% if @seller.present? %>
 <div class="mt-5">
   <h2>Products by
     <%= @seller.first_name + " " + @seller.last_name %></h2>

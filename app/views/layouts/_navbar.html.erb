@@ -12,10 +12,11 @@
           <%= link_to 'Products', products_path, class: "nav-link" %>
         </li>
 
-
+      <% if current_user.nil? %>
       <li class="nav-item <%= 'active' if current_page?(new_user_session_path) %>">
         <%= link_to 'Login', new_user_session_path, class: "nav-link" %> 
       </li>
+      <% end %>
 
     </ul>
 

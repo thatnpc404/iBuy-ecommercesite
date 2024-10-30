@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
       conditions = {}
       conditions[:category_id] = params[:category_id] if params[:category_id].present?
       sort_option = (params[:sort] == "desc" ? { price: :desc } : { price: :asc }) if params[:sort].present?
+      conditions[:seller_id]=params[:seller_id] if params[:seller_id].present?
+      @seller=User.find(params[:seller_id]) if params[:seller_id].present?
       @products = Product.search(query, where: conditions, order: sort_option, page: params[:page], per_page: 8)
   end
 

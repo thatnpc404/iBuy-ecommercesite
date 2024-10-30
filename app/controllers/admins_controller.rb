@@ -1,7 +1,6 @@
 class AdminsController < ApplicationController
   before_action :admin_authorize
   def index
-    Order.refresh_all_order_statuses
     @orders=Order.all.order(created_at: :desc)
   end
 

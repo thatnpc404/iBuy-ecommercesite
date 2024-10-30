@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   def show
     @user=current_user
     @order=Order.find(params[:id])
-    Order.refresh_all_order_statuses
   end
 
   def index
@@ -39,12 +38,24 @@ class OrdersController < ApplicationController
           line_item.product.update(stock_quantity: line_item.product.stock_quantity-line_item.quantity)
         end
       end
+      @order=order_refresh(@order)
       @cart.line_items.update_all(cart_id: nil)
       redirect_to orders_path, notice: "Order Placed Successfully !"
     else
         flash.now[:alert] = "Error creating order."
         render :payment
     end
+  end
+
+  def order_refresh(order)
+      if order.line_items.all? { |line_item| line_item.status == "Dispatched" }
+        order.update(status: "Confirmed")
+      elsif order.line_items.all? { |line_item| line_item.status == "Cancelled" }
+        order.update(status: "Cancelled")
+      else
+        order.update(status: "Partial")
+      end
+      order
   end
 
   def calculate_total_price
@@ -61,15 +72,13 @@ class OrdersController < ApplicationController
     @order_ids = @line_items.pluck(:order_id).uniq
     @orders = Order.where(id: @order_ids)
     @order_details = {}
-
-    # Loop through each order
     @orders.reverse_each do |order|
       order_line_items = []
       associated_line_items = @line_items.where(order_id: order.id)
       associated_line_items.each do |line_item|
         product = Product.find(line_item.product_id)
         order_line_items << {
-          id: line_item.id,  
+          id: line_item.id,
           product_name: product.name,
           line_item_quantity: line_item.quantity,
           status: line_item.status
@@ -90,6 +99,7 @@ class OrdersController < ApplicationController
       else
         flash.now[:alert] = "Failed to update line item: #{line_item.errors.full_messages.join(", ")}"
       end
+    @order=order_refresh(line_item.order)
     else
       flash.now[:alert] = "Line item not found."
     end
@@ -98,7 +108,6 @@ class OrdersController < ApplicationController
 
   def seller_cancel
     line_item = LineItem.find_by(id: params[:id])
-
     if line_item
       if line_item.update(status: "Cancelled")
         line_item.product.update(stock_quantity: line_item.product.stock_quantity+line_item.quantity)
@@ -106,6 +115,7 @@ class OrdersController < ApplicationController
       else
         flash.now[:alert] = "Failed to update line item: #{line_item.errors.full_messages.join(", ")}"
       end
+      @order=order_refresh(line_item.order)
     else
       flash.now[:alert] = "Line item not found."
     end

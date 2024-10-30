@@ -35,8 +35,7 @@
 
         <% if @cart %>
         <div class="card-footer">
-          <!-- Form for adding to cart -->
-          <%= form_with model: line_items, method: :post, local: true do %>
+          <%= form_with url: line_items_path, method: :post, local: true do %>
             <div class="input-group mb-3">
               <select name="line_item[quantity]" class="form-select form-select-sm" style="margin-top: 10px" aria-label="Select quantity">
                 <% (1..5).each do |num| %>
