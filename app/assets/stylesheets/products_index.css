@@ -1,0 +1,142 @@
+/* products_index.css */
+
+/* General Styles */
+body {
+  background-color: #f8f9fa; /* Light background */
+  color: #343a40; /* Dark text color */
+  font-family: 'Arial', sans-serif;
+}
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Container Styles */
+.container {
+  margin-top: 20px;
+}
+
+/* Heading Styles */
+h1 {
+  color: #000000; /* Dark blue heading color */
+  font-size: 2.5rem; /* Adjusted font size */
+}
+
+/* Custom Background */
+.custom-bg {
+  background-color: #ffffff; /* White background for the custom area */
+  padding: 20px; /* Added padding for aesthetics */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Filter Container Styles */
+.filter-container {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  gap: 10px; /* Spacing between elements */
+  margin-bottom: 20px; /* Space below filter section */
+}
+
+.filter-container .search-bar,
+.filter-container .category-select,
+.filter-container .sort-select {
+  flex: 1; /* Equal width for each item */
+}
+
+.filter-container .search-bar input[type="text"],
+.filter-container .category-select select,
+.filter-container .sort-select select {
+  width: 100%; /* Full width */
+  padding: 8px; /* Padding for better usability */
+  border-radius: 0.25rem; /* Rounded corners */
+  border: 1px solid #ced4da; /* Light gray border */
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #0056b3; /* Dark blue for primary buttons */
+  border: none; /* Remove border */
+  color: #ffffff; /* White text */
+}
+
+.btn-danger {
+  background-color: #ff7f50; /* Soft orange for danger buttons */
+  border: none; /* Remove border */
+  color: #ffffff; /* White text */
+}
+
+/* Card Styles */
+.card {
+  background-color: #ecedf1; /* White background for cards */
+  border: 1px solid #000000; /* Light gray border */
+  border-radius: 0.5rem; /* Rounded corners */
+  transition: transform 0.3s; /* Smooth hover effect */
+  margin-bottom: 20px; /* Space between cards */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.card-img-top {
+  object-fit: contain;
+}
+
+/* Link Styles */
+a {
+  color: #0056b3; /* Dark blue for links */
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.text-center {
+  text-align: center; /* Centered text */
+}
+
+/* Price Styles */
+.card-text {
+  font-weight: bold; /* Bold price for emphasis */
+  font-size: 1.2rem; /* Larger font size for price */
+  color: #343a40; /* Dark text color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .col-md-3 {
+      flex: 0 0 100%; /* Full width on small screens */
+      max-width: 100%; /* Override column width */
+  }
+  .filter-container {
+      flex-direction: column; /* Stack elements on small screens */
+  }
+}
+
+
+.pagination-container {
+  display: flex;               /* Use flexbox for centering */
+  justify-content: center;     /* Center items horizontally */
+  margin: 20px 0;             /* Spacing around pagination */
+}
+
+.pagination {
+  display: flex;               /* Flex container for pagination items */
+  align-items: center;         /* Center items vertically */
+  list-style: none;           /* Remove default list styling */
+  padding: 0;                 /* Remove default padding */
+}
+
+.pagination .page {
+  margin: 0 5px;              /* Margin between page links */
+  padding: 8px 12px;          /* Padding for links */
+  text-decoration: none;       /* Remove underline from links */
+  border: 1px solid #007bff;  /* Border color */
+  border-radius: 4px;         /* Rounded corners */
+  background-color: #ffffff;  /* Background color */
+  color: #000000;              /* Text color */
+  transition: background-color 0.3s, color 0.3s; /* Transition effects */
+}
+

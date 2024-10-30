@@ -1,0 +1,82 @@
+/* Dark Theme Styles */
+body {
+    background-color: #ffffff; /* Dark Gray Background */
+    color: #E0E0E0; /* Light Gray Text */
+    font-family: Arial, sans-serif; /* Font Family */
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #ffffff; /* Teal Link Color */
+    text-decoration: none; /* No underline */
+}
+
+a:hover {
+    color: #FFFFFF; /* White on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+.container {
+    max-width: 1200px; /* Max width for the container */
+    margin: auto; /* Center container */
+    padding: 20px; /* Padding */
+}
+
+.card {
+    background-color: #635151; /* Card Background */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.2s; /* Transition for scaling */
+    overflow: hidden; /* Prevent overflow */
+    margin-bottom: 20px; /* Space between cards */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Grow on hover */
+}
+
+.card-img-top {
+    object-fit: cover; /* Maintain aspect ratio */
+    height: 200px; /* Fixed height */
+}
+
+.card-body {
+    padding: 15px; /* Padding inside card */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Card Title Size */
+    margin: 0; /* No margin */
+}
+
+.card-text {
+    font-size: 0.9rem; /* Font size for card text */
+}
+
+.btn {
+    background-color: #1ABC9C; /* Teal Button Background */
+    color: #121212; /* Dark Text on Button */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.btn:hover {
+    background-color: #FFFFFF; /* White on hover */
+    color: #121212; /* Dark Text */
+}
+
+/* Custom scrollbar for better visibility */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1ABC9C; /* Teal scrollbar thumb */
+    border-radius: 10px; /* Rounded scrollbar thumb */
+}
+
+::-webkit-scrollbar-track {
+    background: #1E1E1E; /* Track color */
+}

@@ -1,0 +1,33 @@
+
+[1mFrom:[0m /home/mirraw/Desktop/shrek/iBuy site/iBuy/app/controllers/sellers_controller.rb:23 SellersController#add_product:
+
+    [1;34m15[0m: [32mdef[0m [1;34madd_product[0m [1;34m#add a new product to the db[0m
+    [1;34m16[0m:   category_id = params[[33m:category_id[0m]
+    [1;34m17[0m:   name = params[[33m:name[0m]
+    [1;34m18[0m:   description = params[[33m:description[0m]
+    [1;34m19[0m:   price = params[[33m:price[0m]
+    [1;34m20[0m:   img_url = params[[33m:img_url[0m]
+    [1;34m21[0m:   stock_quantity = params[[33m:stock_quantity[0m]
+    [1;34m22[0m:   
+ => [1;34m23[0m:   binding.pry
+    [1;34m24[0m:   
+    [1;34m25[0m: 
+    [1;34m26[0m:   @product = [1;34;4mProduct[0m.new(
+    [1;34m27[0m:     [35mcategory_id[0m: category_id,
+    [1;34m28[0m:     [35mname[0m: name,
+    [1;34m29[0m:     [35mdescription[0m: description,
+    [1;34m30[0m:     [35mprice[0m: price,
+    [1;34m31[0m:     [35mimg_url[0m: img_url,
+    [1;34m32[0m:     [35mstock_quantity[0m: stock_quantity,
+    [1;34m33[0m:     [35mseller_id[0m: session[[33m:seller_id[0m] 
+    [1;34m34[0m:   )
+    [1;34m35[0m: 
+    [1;34m36[0m:   [32mif[0m @product.save
+    [1;34m37[0m:     flash.now[[33m:notice[0m] = [31m[1;31m"[0m[31mProduct successfully created.[1;31m"[0m[31m[0m
+    [1;34m38[0m:     redirect_to sellers_path
+    [1;34m39[0m:   [32melse[0m
+    [1;34m40[0m:     flash.now[[33m:alert[0m] = [31m[1;31m"[0m[31mError creating product.[1;31m"[0m[31m[0m
+    [1;34m41[0m:     render [33m:new_product[0m [1;34m# Render the form again to show errors[0m
+    [1;34m42[0m:   [32mend[0m
+    [1;34m43[0m: [32mend[0m
+

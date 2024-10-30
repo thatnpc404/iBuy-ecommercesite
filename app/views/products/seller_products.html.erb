@@ -1,0 +1,21 @@
+<h1 class="text-center mb-4">Products by <%= @seller.first_name+" "+@seller.last_name %></h1>
+
+<div class="container">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <%= image_tag product.img_url, class: "card-img-top", alt: product.name, style: "object-fit: contain; height: 200px;" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text">
+              <strong>Price:</strong> <%= number_to_currency(product.price, unit: '₹', format: '%u%n', delimiter: ',', precision: 2) %><br>
+              <strong>Description:</strong> <%= truncate(product.description, length: 100) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

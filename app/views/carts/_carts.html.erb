@@ -1,0 +1,29 @@
+<div class="cart">
+  <h2>Your Cart</h2>
+  <%= stylesheet_link_tag "mini_cart",media:'all' %>
+  <% if @line_items %>
+    <ul>
+      <% @line_items.each do |line_item| %>
+        <li>
+          <%= image_tag line_item.product.img_url, width: 50, height: 50 %>
+          <%= line_item.product.name %> - Quantity: <%= line_item.quantity %>
+          <br>
+          Price: <%= line_item.product.price %>
+<%= button_to 'Remove', line_item_path(line_item), method: :delete, class:'btn btn-danger' %>
+
+        </li>
+      <% end %>
+    </ul>
+    <p>Total: <%= number_to_currency(@line_items.sum { |li| li.price * li.quantity }, unit: '₹', format: '%u%n', delimiter: ',', precision: 2) %></p>
+    
+    <div class="checkout-container">
+    <% if @line_items.any? %>
+<%= button_to 'Checkout', checkout_orders_path, method: :get, class: 'btn btn-primary ml-5' %>
+<% end %>
+    </div>
+        <br>
+
+  <% else %>
+    <p>Your cart is empty.</p>
+  <% end %>
+</div>

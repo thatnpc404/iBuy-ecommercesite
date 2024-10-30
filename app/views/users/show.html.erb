@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="text-center"><%= current_user.role.capitalize %> Information</h1>
+
+      <div class="user-details mx-auto" style="max-width: 500px;">
+        <p><strong>Name:</strong> <%= current_user.first_name + " " + current_user.last_name %></p>
+        <p><strong>Email:</strong> <%= current_user.email %></p>
+        <p><strong>Role:</strong> <%= current_user.role.capitalize %></p>
+        <p><strong>Joined on:</strong> <%= current_user.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+
+      <div class="actions text-center mt-4">
+        <%= link_to 'Edit User', edit_user_registration_path(current_user), class: 'btn btn-primary mx-2' %>
+        <%= link_to 'Delete User', registration_path(current_user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mx-2' %>
+        <% if current_user&.user? %>
+        <%= link_to 'My Addresses', addresses_path,method: :get, class: 'btn btn-primary mx-2' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.checkout {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    margin-right: 3%;
+    margin-left: 10%;
+  }
+  
+  .cart, .checkout-details {
+    flex: 1; /* Allows both sections to take equal space */
+    margin: 20px; /* Adds space between the sections */
+    padding: 20px;
+    border: 1px solid #ddd; /* Optional: adds a border for separation */
+    border-radius: 5px; /* Optional: rounded corners */
+    background-color: #f9f9f9; /* Light background for better visibility */
+  }
+  
+  h2, h3 {
+    margin-bottom: 15px; /* Space below headings */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Space below form groups */
+  }
+  
+  .form-group .form-control {
+    width: 800px; /* Set the width as desired */
+    max-width: 100%; /* Prevent overflow */
+    padding: 10px; /* Optional: adds padding inside the text field */
+    font-size: 16px; /* Optional: increases the font size */
+}

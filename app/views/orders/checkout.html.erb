@@ -1,0 +1,33 @@
+<div class="checkout">
+ <%= stylesheet_link_tag 'checkout', media: 'all', data: { turbolinks: false } %> 
+
+  <!-- Left Side: Products in Cart -->
+  <div class="cart">
+    <h2>Order Items</h2>
+    <% if @line_items.present? %>
+        <ul>
+          <% @line_items.each do |line_item| %>
+            <li>
+              <%= image_tag line_item.product.img_url, width: 50, height: 100 %>
+              <%= line_item.product.name %> - Quantity: <%= line_item.quantity %>
+              <span>Total: <%= number_to_currency(line_item.product.price * line_item.quantity, unit: '₹', format: '%u%n', delimiter: ',', precision: 2) %></span>
+            </li>
+          <% end %>
+        </ul>
+        <p>
+          <strong>Grand Total: 
+            <%= number_to_currency(@line_items.sum { |li| li.price * li.quantity }, unit: '₹', format: '%u%n', delimiter: ',', precision: 2) %>
+          </strong>
+        </p>
+        
+    <% else %>
+      <p>Your cart is empty.</p>
+    <% end %>
+  </div>
+
+  <!-- Place the Address Information at the bottom -->
+<%= render 'addresses/new', address: @address%>
+
+
+</div>
+  

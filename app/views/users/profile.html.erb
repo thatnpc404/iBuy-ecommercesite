@@ -1,0 +1,16 @@
+<div class="profile-info">
+  <% if @profile.is_a?(User) %>
+    <h3>User Profile: <%= @profile.first_name %> <%= @profile.last_name %></h3>
+    <p>Email: <%= @profile.email %></p>
+    <p>Contact: <%= @profile.phone_number %></p>
+
+    <!-- Add other user-specific fields -->
+  <% elsif @profile.is_a?(Seller) %>
+    <h3>Seller Profile: <%= @profile.name %></h3>
+    <p>Store Name: <%= @profile.store_name %></p>
+    <p>Contact: <%= @profile.contact_info %></p>
+    <!-- Add other seller-specific fields -->
+  <% else %>
+    <p>Profile not found.</p>
+  <% end %>
+</div>

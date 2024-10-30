@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag 'all_sellers', media: "all" %>
+
+<div class="container">
+  <div class="row">
+    <% @sellers.each do |seller| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <%= link_to (seller.first_name+" "+seller.last_name), products_path("seller_id": seller.id), class: "card-subtitle mb-6 text-muted link" %>
+            <h6 class="card-subtitle mb-2 text-muted"><%= seller.email %></h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

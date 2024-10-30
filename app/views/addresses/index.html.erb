@@ -1,0 +1,34 @@
+<h1 class="mb-4">Addresses</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Shipping Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zipcode</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td><%= address.shipping_address %></td>
+          <td><%= address.city %></td>
+          <td><%= address.state %></td>
+          <td><%= address.zip_code %></td>
+          <% if @source=="checkout" %>
+          <td><%= link_to 'Select', payment_orders_path(address_id: address.id), class: 'btn btn-info btn-sm' %></td>
+          <% end %>
+          <td><%= link_to 'Edit', edit_address_path(address), class: 'btn btn-warning btn-sm' %></td>
+          <td>
+            <%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'Back', root_path, class: 'btn btn-secondary' %>

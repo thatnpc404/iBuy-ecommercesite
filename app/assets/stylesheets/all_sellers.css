@@ -1,0 +1,46 @@
+body {
+    background-color: #121212; /* Dark background for the entire page */
+    color: #e0e0e0; /* Default light text color */
+}
+
+.container {
+    padding: 20px;
+}
+
+.card {
+    background-color: #1e1e1e; /* Dark card background */
+    border: none; /* Remove card border */
+    transition: transform 0.3s; /* Smooth scaling on hover */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up the card on hover */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title, 
+.card-subtitle, 
+.card-text, 
+.link {
+    color: #e0e0e0 !important; /* Ensure text is light for card title, subtitle, and text */
+}
+
+.card-subtitle {
+    color: #80cbc4; /* Teal color for subtitles */
+}
+
+.card-text {
+    color: #b0bec5; /* Slightly lighter text for other details */
+}
+
+.link {
+    color: #80cbc4; /* Teal color for links */
+    text-decoration: none; /* Remove underline */
+}
+
+.link:hover {
+    color: #ffffff; /* Change link color to white on hover */
+}

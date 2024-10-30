@@ -1,0 +1,4 @@
+.card-body p {
+    margin-top: 20px; /* Add space above the description */
+    line-height: 1.5; /* Increase line height for readability */
+  }

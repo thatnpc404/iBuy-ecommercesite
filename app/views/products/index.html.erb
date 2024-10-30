@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag "products_index", media: "all" %>
+<% if session[:seller].present? %>
+<div class="mt-5">
+  <h2>Products by
+    <%= @seller.first_name + " " + @seller.last_name %></h2>
+<% end %>
+</div>
+<div class="mb-4 mr-4 d-flex justify-content-end align-items-center">
+  <%= form_with(url: products_path(category_id: :category_id,sort: :sort), method: :get, local: true, class: "form-inline") do %>
+    <div class="form-group mr-2">
+      <%= render "products/search_bar" %>
+
+      <%= select_tag :category_id,
+      options_for_select(Category.all.pluck(:name, :id), params[:category_id]),
+      include_blank: "Select Category",
+      class: "form-control" %>
+    </div>
+
+    <div class="form-group mr-2">
+      <%= select_tag :sort,
+      options_for_select(
+        [["Low to High", "asc"], ["High to Low", "desc"]],
+        params[:sort],
+      ),
+      include_blank: "Sort by Price",
+      class: "form-control" %>
+    </div>
+    <%= button_tag "Filter", type: "submit", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Clear",
+  products_path(clear: :true),
+  method: :get,
+  class: "btn btn-danger ml-3" %>
+
+</div>
+<% if !@products.present? and params[:query].present? %>
+  <p class="text-center">No products found matching your search criteria.</p>
+<% elsif !@products.present? and !params[:query].present? %>
+  <p class="text-center">No products to show.</p>
+
+<% else %>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <%= image_tag product.img_url,
+          class: "card-img-top",
+          alt: product.name,
+          style: "object-fit: contain; height: 200px;" %>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to product.name, product_path(product), class: "stretched-link" %>
+            </h5>
+            <p class="card-text">
+              Price:
+              <%= number_to_currency(
+                product.price,
+                unit: "₹",
+                format: "%u%n",
+                delimiter: ",",
+                precision: 2,
+              ) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<div class="pagination-container">
+  <%= paginate @products %>
+</div>
+<% end %>

@@ -1,0 +1,9 @@
+.disabled {
+    opacity: 0.5; /* Grey out */
+    pointer-events: none; /* Disable clicks */
+  }
+  
+  .disabled-label {
+    color: grey; /* Change text color to grey */
+  }
+  

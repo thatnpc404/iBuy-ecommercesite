@@ -1,0 +1,49 @@
+body {
+    background-color: #000000; /* Dark background for the whole page */
+    color: #f0f0f0; /* Default text color */
+}
+
+.card {
+    background-color: #555; /* Darker card background */
+    border: none; /* Remove card border */
+    border-radius: 10px; /* Adjust the value to control the roundness */
+    overflow: hidden; /* Ensure content fits well with rounded corners */
+}
+
+.container {
+    background-color: #000000; /* Darker background for the container */
+    padding: 20px; /* Optional padding for aesthetics */
+    border-radius: 8px; /* Rounded corners for the container */
+}
+
+.card {
+    background-color: #221f1f; /* Darker card background */
+    color: #f0f0f0; /* Card text color */
+    border: none; /* Remove card border */
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Grow the card to 105% of its size on hover */
+}
+
+.card-title a {
+    color: #f0f0f0; /* Default link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.card-title a:hover {
+    color: white; /* Change link color to white on hover */
+}
+
+
+.card-text{
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.card-text:hover{
+    color:white;
+}
+
+

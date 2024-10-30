@@ -1,0 +1,34 @@
+<div class="payment">
+  <div class="payment-options">
+    <h3>Choose a Payment Method</h3>
+
+    <%= form_with model: @order, local: true ,method: :post do %>
+      <%= hidden_field_tag :address_id, @address_id %>
+
+      <!-- Cash on Delivery Option -->
+      <div class="cod-option mt-4">
+        <input type="radio" name="payment_method" value="cod" id="cod" checked>
+        <label for="cod">Cash on Delivery</label>
+      </div>
+
+      <!-- UPI Payment Option (Disabled) -->
+      <div class="upi-option mt-4 disabled">
+        <input type="radio" name="payment_method" value="upi" id="upi" disabled>
+        <label for="upi" class="disabled-label">UPI Payment (Currently Unavailable)</label>
+      </div>
+
+      <!-- Card Payment Option (Disabled) -->
+      <div class="card-option mt-4 disabled">
+        <input type="radio" name="payment_method" value="card" id="card" disabled>
+        <label for="card" class="disabled-label">Credit/Debit Card (Currently Unavailable)</label>
+      </div>
+
+      <!-- Message for Online Payment Shutdown -->
+      <div class="payment-message mt-3">
+        <p>Online payment is shut down due to high requests.</p>
+      </div>
+
+      <%= submit_tag 'Place Order', data: { confirm: 'Are you sure?' }, class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>

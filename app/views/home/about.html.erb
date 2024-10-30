@@ -1,0 +1,6 @@
+<title>About</title>
+<% if current_user.present? %>
+<h3>Welcome to iBuy <%= "#{current_user.first_name}" %></h3>
+<% else %>
+<h3>Welcome to iBuy Guest</h3>
+<% end %>

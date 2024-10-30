@@ -1,0 +1,47 @@
+<!-- app/views/users/edit.html.erb -->
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Edit Profile</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @user, local: true,class: "border p-4 shadow-sm" do |form| %>
+
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+          </div>
+        <% end %>
+
+        <div class="form-group mb-3">
+          <%= form.label :first_name, "First Name", class: "form-label" %>
+          <%= form.text_field :first_name, class: "form-control", placeholder: "Enter your first name", value: @user.first_name %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :last_name, "Last Name", class: "form-label" %>
+          <%= form.text_field :last_name, class: "form-control", placeholder: "Enter your last name", value: @user.last_name %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :email, "Email", class: "form-label" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "Enter your email", value: @user.email %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :phone_number, "Phone Number", class: "form-label" %>
+          <%= form.telephone_field :phone_number, class: "form-control", placeholder: "Enter your phone number", value: @user.phone_number %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :password_digest, "Password", class: "form-label" %>
+          <%= form.password_field :password_digest, class: "form-control", placeholder: "Enter your new password (leave blank to keep current)" %>
+        </div>
+
+        <div class="d-grid">
+          <%= form.submit "Update Profile", class: "btn btn-success btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

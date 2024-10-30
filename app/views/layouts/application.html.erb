@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>iBuy</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<% if flash[:alert] %>
+  <script>
+    alert("<%= j flash.now[:alert] %>");
+  </script  >
+<% end %>
+
+<% if flash[:notice] %>
+  <script>
+    alert("<%= j flash.now[:notice] %>");
+  </script>
+<% end %>
+
+
+<%= render 'layouts/navbar' %>
+
+  <%= yield %>
+</body>
+</html>

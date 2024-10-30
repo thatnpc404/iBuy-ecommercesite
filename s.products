@@ -1,0 +1,9 @@
+ => 
+[32m#<Seller:0x0000793e02f613c8[0m
+ id: [34m[1m1[0m,
+ name: [31m[1m"[0m[31mGarnier India[0m[31m[1m"[0m,
+ email: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+ created_at: [31m[1m"[0m[31m2024-10-17 05:00:36.845572000 +0000[0m[31m[1m"[0m,
+ updated_at: [31m[1m"[0m[31m2024-10-17 05:00:36.845572000 +0000[0m[31m[1m"[0m,
+ password_digest: [31m[1m"[0m[31m[FILTERED][0m[31m[1m"[0m,
+ phone_number: [31m[1m"[0m[31m1800223000[0m[31m[1m"[0m[32m>[0m 

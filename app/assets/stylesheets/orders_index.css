@@ -1,0 +1,101 @@
+/* orders.css */
+
+/* General Styles */
+body {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ffffff; /* White color for headings */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* List Group Styles */
+.list-group-item {
+    background-color: #1f1f1f; /* Darker item background */
+    border: 1px solid #333; /* Slightly lighter border */
+    border-radius: 0.25rem; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    padding: 15px;
+    transition: background-color 0.3s;
+    margin-bottom: 15px; /* Space between each order */
+}
+
+.list-group-item:hover {
+    background-color: #272727; /* Slightly lighter on hover */
+}
+
+/* Order Item Styles */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #444; /* Divider line for items */
+}
+
+.order-item:last-child {
+    border-bottom: none; /* Remove last item border */
+}
+
+.img-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 0.25rem; /* Consistent border radius */
+}
+
+.text-primary {
+    color: #bb86fc; /* Light purple color for primary text */
+}
+
+/* Link Styles */
+a {
+    color: #ffffff; /* Set link color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    color: #bb86fc; /* Change link color on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .order-item {
+        flex-direction: column; /* Stack items on small screens */
+        align-items: flex-start;
+    }
+}
+
+strong {
+    color: #ffffff; /* White color for strong text */
+}
+
+.text-muted {
+    color: #b0b0b0; /* Muted light gray */
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem; /* Adjust bottom margin */
+}
+
+.mt-3 {
+    margin-top: 1rem; /* Adjust top margin */
+}
+
+/* New Divider Style */
+.order-divider {
+    border-top: 2px solid #444; /* Divider line */
+    margin: 15px 0; /* Space above and below the divider */
+}

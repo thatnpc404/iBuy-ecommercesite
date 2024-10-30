@@ -1,0 +1,48 @@
+<% if @order_details&.present? %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_details.each do |order_id, line_items| %>
+          <% if line_items %>
+            <% line_items.each do |line_item| %>
+              <tr>
+                <td><%= order_id %></td>
+                <td><%= line_item[:product_name] %></td>
+                <td><%= line_item[:line_item_quantity] %></td>
+                <td><%= line_item[:status] %></td>
+                <td>
+                  <% if line_item[:status] != "Cancelled" %>
+                    <div class="d-flex gap-2">
+                      <% if line_item[:status] != "Dispatched" %>
+                        <%= button_to "Dispatch", dispatch_order_path(line_item[:id]), method: :post, class: "btn btn-primary btn-sm" %>
+                        <%= button_to "Cancel", seller_cancel_order_path(line_item[:id]), data: { confirm: 'Are you sure you want to cancel the order?' }, method: :post, class: "btn btn-danger btn-sm ml-2" %>
+                      <% else %>
+                        <%= button_to "Dispatch", dispatch_order_path(line_item[:id]), method: :post, class: "btn btn-primary btn-sm", disabled: true %>
+                        <%= button_to "Cancel", seller_cancel_order_path(line_item[:id]), data: { confirm: 'Are you sure you want to cancel the order?' }, method: :post, class: "btn btn-danger btn-sm ml-2", disabled: true %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="5" class="text-center">No Line Items</td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <h2>No Order Requests yet :)</h2>
+<% end %>
