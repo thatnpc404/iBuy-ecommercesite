@@ -9,7 +9,7 @@
   <%= form_with(url: products_path(category_id: :category_id,sort: :sort), method: :get, local: true, class: "form-inline") do %>
     <div class="form-group mr-2">
       <%= render "products/search_bar" %>
-
+      <%= hidden_field_tag :seller_id, params[:seller_id] %>
       <%= select_tag :category_id,
       options_for_select(Category.all.pluck(:name, :id), params[:category_id]),
       include_blank: "Select Category",

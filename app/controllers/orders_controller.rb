@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
     total_price
   end
 
-  def order_requests
+  def order_requests # this is from the seller side
     @products = Product.where(seller_id: current_user.id)
     @line_items = LineItem.where(product_id: @products.pluck(:id)).where.not(order_id: nil)
     @order_ids = @line_items.pluck(:order_id).uniq

@@ -39,7 +39,11 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [ :index, :edit, :create, :update, :destroy, :show, :new ]
 
-  resources :admins, only: [ :index ]
+  resources :admins, only: [ :index ] do
+    collection do
+      get "all_products", to: "admins#all_products", as: "products"
+    end
+  end
 
   root "products#index"
 end

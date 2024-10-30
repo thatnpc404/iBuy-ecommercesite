@@ -68,7 +68,6 @@ class ProductsController < ApplicationController
 
 
   def seller_products
-    session.delete(:seller)
     @seller=User.find(params[:id])
     @products=@seller.products
   end

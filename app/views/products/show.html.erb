@@ -1,15 +1,10 @@
  <%= stylesheet_link_tag 'products_show', media: 'all', data: { turbolinks: false } %> 
 <div class="container mt-4">
   <div class="row">
-  <% if flash[:alert] %>
-  <%= flash[:alert] %>
-  <% elsif flash[:notice] %>
-  <%= flash[:notice] %>
-  <% end %>
   <% if @cart %>
-    <div class="col-md-8"> <!-- Main product display section -->
+    <div class="col-md-8">
     <% else %>
-        <div class="col" style="width: 500px;"> <!-- Main product display section -->
+        <div class="col" style="width: 500px;"> 
 
     <% end %>
       <div class="card mb-4">

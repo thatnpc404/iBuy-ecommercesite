@@ -1,7 +1,11 @@
 class AdminsController < ApplicationController
   before_action :admin_authorize
   def index
-    @orders=Order.all.order(created_at: :desc)
+    @orders = Order.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def all_products
+    @products=Product.search("*", page: params[:page], per_page: 8)
   end
 
   private

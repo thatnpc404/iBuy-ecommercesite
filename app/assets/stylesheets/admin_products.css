@@ -1,0 +1,24 @@
+.pagination-container {
+    display: flex;               /* Use flexbox for centering */
+    justify-content: center;     /* Center items horizontally */
+    margin: 20px 0;             /* Spacing around pagination */
+  }
+  
+  .pagination {
+    display: flex;               /* Flex container for pagination items */
+    align-items: center;         /* Center items vertically */
+    list-style: none;           /* Remove default list styling */
+    padding: 0;                 /* Remove default padding */
+  }
+  
+  .pagination .page {
+    margin: 0 5px;              /* Margin between page links */
+    padding: 8px 12px;          /* Padding for links */
+    text-decoration: none;       /* Remove underline from links */
+    border: 1px solid #007bff;  /* Border color */
+    border-radius: 4px;         /* Rounded corners */
+    background-color: #ffffff;  /* Background color */
+    color: #000000;              /* Text color */
+    transition: background-color 0.3s, color 0.3s; /* Transition effects */
+  }
+  

@@ -8,9 +8,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style='margin-top:5px;'>
     <ul class="navbar-nav mr-auto">
+      <% unless current_user&.admin? %>
         <li class="nav-item <%= 'active' if current_page?(products_path) %>">
           <%= link_to 'Products', products_path, class: "nav-link" %>
         </li>
+        <% else%>
+          <li class="nav-item <%= 'active' if current_page?(products_path) %>">
+          <%= link_to 'Products', products_admins_path, class: "nav-link" %>
+        </li>
+          <li class="nav-item <%= 'active' if current_page?(products_path) %>">
+          <%= link_to 'Orders', admins_path, class: "nav-link" %>
+        </li>
+      <% end %>
 
       <% if current_user.nil? %>
       <li class="nav-item <%= 'active' if current_page?(new_user_session_path) %>">
