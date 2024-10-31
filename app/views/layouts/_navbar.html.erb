@@ -1,6 +1,6 @@
 
- <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-  <%= link_to 'iBuy', about_path, class: "navbar-brand" %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <%= link_to 'iBuy', about_path, class: "navbar-brand" %>
   
   <%= stylesheet_link_tag "navbar", media: "all" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
                 </li>
                 </ul>
           <% else %>
-          <h3 class="nav-link">Guest</h3>
+          <h6 class="nav-link mt-2">Guest</h6>
         <% end  %>
 
   </div>

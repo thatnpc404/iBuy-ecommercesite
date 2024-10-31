@@ -1,0 +1,20 @@
+<% flash.each do |key, message| %>
+  <div class="alert <%= key == 'alert' ? 'alert-danger' : 'alert-success' %> flash-message" style="ml-5;" >
+    <%= message %>
+  </div>
+<% end %> 
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const flashMessages = document.querySelectorAll('.flash-message');
+
+    flashMessages.forEach(function(message) {
+      setTimeout(function() {
+        message.style.opacity = 0; // Fade out
+        setTimeout(function() {
+          message.remove();
+        }, 500); 
+      }, 1000); 
+    });
+  });
+</script>

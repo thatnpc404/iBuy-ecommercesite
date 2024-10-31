@@ -1,5 +1,6 @@
 class SellersController < ApplicationController
-  before_action :admin_authorize
+  #before_action :admin_authorize
+  
   def index
     @sellers=User.where(role: "seller")
   end

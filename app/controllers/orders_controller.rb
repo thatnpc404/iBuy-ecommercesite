@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [ :show ]
-  before_action :user_authorize, only: [ :order_requests, :approve ]
+  #before_action :set_order, only: [ :show ]
+  #before_action :user_authorize, only: [ :order_requests, :approve ]
+  authorize_resource class: false
 
   def show
     @user=current_user
@@ -8,7 +9,7 @@ class OrdersController < ApplicationController
     Order.refresh_all_order_statuses
   end
 
-  def index
+  def index 
     @user=current_user
     @orders = @user.orders.order(created_at: :desc)
   end

@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-  before_action :user_authorize
-  before_action :set_cart_and_items, only: [ :checkout ]
+  #before_action :user_authorize
+  #before_action :set_cart_and_items, only: [ :checkout ]
 
   def index
     set_cart_and_items

@@ -2,9 +2,9 @@
 
 /* General Styles */
 body {
-  background-color: #f8f9fa; /* Light background */
+  background-color: #f3f5f7; /* Light background */
   color: #343a40; /* Dark text color */
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 .centered {
   display: flex;
@@ -107,36 +107,34 @@ a:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .col-md-3 {
-      flex: 0 0 100%; /* Full width on small screens */
-      max-width: 100%; /* Override column width */
+    flex: 0 0 100%; /* Full width on small screens */
+    max-width: 100%; /* Override column width */
   }
   .filter-container {
-      flex-direction: column; /* Stack elements on small screens */
+    flex-direction: column; /* Stack elements on small screens */
   }
 }
 
-
 .pagination-container {
-  display: flex;               /* Use flexbox for centering */
-  justify-content: center;     /* Center items horizontally */
-  margin: 20px 0;             /* Spacing around pagination */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center items horizontally */
+  margin: 20px 0; /* Spacing around pagination */
 }
 
 .pagination {
-  display: flex;               /* Flex container for pagination items */
-  align-items: center;         /* Center items vertically */
-  list-style: none;           /* Remove default list styling */
-  padding: 0;                 /* Remove default padding */
+  display: flex; /* Flex container for pagination items */
+  align-items: center; /* Center items vertically */
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
 }
 
 .pagination .page {
-  margin: 0 5px;              /* Margin between page links */
-  padding: 8px 12px;          /* Padding for links */
-  text-decoration: none;       /* Remove underline from links */
-  border: 1px solid #007bff;  /* Border color */
-  border-radius: 4px;         /* Rounded corners */
-  background-color: #ffffff;  /* Background color */
-  color: #000000;              /* Text color */
+  margin: 0 5px; /* Margin between page links */
+  padding: 8px 12px; /* Padding for links */
+  text-decoration: none; /* Remove underline from links */
+  border: 1px solid #007bff; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #ffffff; /* Background color */
+  color: #000000; /* Text color */
   transition: background-color 0.3s, color 0.3s; /* Transition effects */
 }
-

@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
-  before_action :user_authorize
+  # #before_action :user_authorize
+  # authorize_resource class: false
+
   def show
   end
 
@@ -57,7 +59,7 @@ class LineItemsController < ApplicationController
   end
 
   def user_authorize
-    unless current_user&.user?
+    unless current_user&.customer?
       redirect_to root_path
     end
   end
