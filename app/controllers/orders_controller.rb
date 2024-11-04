@@ -38,12 +38,24 @@ class OrdersController < ApplicationController
           line_item.product.update(stock_quantity: line_item.product.stock_quantity-line_item.quantity)
         end
       end
+      @order=order_refresh(@order)
       @cart.line_items.update_all(cart_id: nil)
       redirect_to orders_path, notice: "Order Placed Successfully !"
     else
         flash.now[:alert] = "Error creating order."
         render :payment
     end
+  end
+
+  def order_refresh(order)
+      if order.line_items.all? { |line_item| line_item.status == "Dispatched" }
+        order.update(status: "Confirmed")
+      elsif order.line_items.all? { |line_item| line_item.status == "Cancelled" }
+        order.update(status: "Cancelled")
+      else
+        order.update(status: "Partial")
+      end
+      order
   end
 
   def calculate_total_price
@@ -65,13 +77,13 @@ class OrdersController < ApplicationController
     order
   end
 
-  def order_requests
+
+  def order_requests # this is from the seller side
     @products = Product.where(seller_id: current_user.id)
     @line_items = LineItem.where(product_id: @products.pluck(:id)).where.not(order_id: nil)
     @order_ids = @line_items.pluck(:order_id).uniq
     @orders = Order.where(id: @order_ids)
     @order_details = {}
-
     @orders.reverse_each do |order|
       order_line_items = []
       associated_line_items = @line_items.where(order_id: order.id)

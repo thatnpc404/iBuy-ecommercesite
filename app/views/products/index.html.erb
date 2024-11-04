@@ -11,7 +11,6 @@
       <%= render "products/search_bar" %>
           <%= hidden_field_tag :seller_id, params[:seller_id]%>
 
-
       <%= select_tag :category_id,
       options_for_select(Category.all.pluck(:name, :id), params[:category_id]),
       include_blank: "Select Category",

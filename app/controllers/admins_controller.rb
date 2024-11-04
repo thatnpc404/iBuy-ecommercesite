@@ -9,4 +9,8 @@ class AdminsController < ApplicationController
     @products=Product.search("*", page: params[:page], per_page: 8)
   end
 
+  def all_products
+    @products=Product.search("*", page: params[:page], per_page: 8)
+  end
+
 end

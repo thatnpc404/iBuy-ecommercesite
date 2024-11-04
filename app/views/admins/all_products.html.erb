@@ -1,0 +1,26 @@
+<div class="container mt-4">
+      <%= stylesheet_link_tag 'admin_products', media:"all" %>
+
+  <h2>Product List</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.stock_quantity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+        <div class="pagination-container">
+  <%= paginate @products %>
+</div>  
+  </div>
+</div>

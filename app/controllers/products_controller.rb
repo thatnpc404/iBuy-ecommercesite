@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
       conditions={}
     end
     @products = Product.search(query, where: conditions, order: sort_option, page: params[:page], per_page: 8)
-        
   end
 
   def show
@@ -67,7 +66,6 @@ class ProductsController < ApplicationController
 
 
   def seller_products
-    session.delete(:seller)
     @seller=User.find(params[:id])
     @products=@seller.products
   end
