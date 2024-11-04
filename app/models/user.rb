@@ -12,7 +12,7 @@ class User < ApplicationRecord
         Cart.create!(user: self)
     end
 
-    enum role: { admin: 0, user: 1, seller: 2 }
+    enum role: { admin: 0, customer: 1, seller: 2 }
 
     validates :first_name, presence: true
     validates :last_name, presence: true

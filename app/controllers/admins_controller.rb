@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-  # before_action :admin_authorize
   authorize_resource class: false
 
   def index
@@ -10,11 +9,4 @@ class AdminsController < ApplicationController
     @products=Product.search("*", page: params[:page], per_page: 8)
   end
 
-  private
-
-  def admin_authorize
-    unless current_user&.admin?
-      redirect_to root_path
-    end
-  end
 end

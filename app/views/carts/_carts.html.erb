@@ -5,7 +5,7 @@
     <ul>
       <% @line_items.each do |line_item| %>
         <li>
-          <%= image_tag line_item.product.img_url, width: 50, height: 50 %>
+          <%= image_tag line_item.product.img, width: 50, height: 50 %>
           <%= line_item.product.name %> - Quantity: <%= line_item.quantity %>
           <br>
           Price: <%= line_item.product.price %>

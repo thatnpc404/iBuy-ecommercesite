@@ -1,6 +1,5 @@
 class LineItemsController < ApplicationController
-  # #before_action :user_authorize
-  # authorize_resource class: false
+  authorize_resource class: false
 
   def show
   end
@@ -58,9 +57,4 @@ class LineItemsController < ApplicationController
     params.require(:line_item).permit(:product_id, :order_id, :cart_id, :quantity, :price, :status)
   end
 
-  def user_authorize
-    unless current_user&.customer?
-      redirect_to root_path
-    end
-  end
 end

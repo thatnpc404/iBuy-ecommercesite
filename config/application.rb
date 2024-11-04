@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module IBuy
   class Application < Rails::Application
+    config.assets.compile = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
     config.exceptions_app = self.routes

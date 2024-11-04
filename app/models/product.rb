@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
+  include Discard::Model
   searchkick callbacks: :async
-  has_one_attached :img_url
+  after_discard :reindex
+  has_one_attached :img
+  has_many :line_items, dependent: :destroy
 
   validates :name, presence: { message: "must be present" }, uniqueness: { message: "must be unique" }
   validates :description, presence: true
@@ -10,7 +13,8 @@ class Product < ApplicationRecord
   belongs_to :category
 
   def search_data
-    {
+    return {} if discarded?
+    { 
       name: name,
       description: description,
       price: price,

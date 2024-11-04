@@ -10,7 +10,7 @@ class Ability
 
     if user.customer?
       can [ :index, :show, :create, :new, :update, :destroy ], :product
-      can [ :index, :show, :payment_page, :checkout ], :order
+      can [ :index, :show, :payment_page, :checkout, :create, :destroy ], :order
       can :manage, :lineitem
       can :manage, :cart
       can :manage, :address
@@ -20,7 +20,5 @@ class Ability
       can :manage, :seller
       can [ :order_requests, :approve, :seller_cancel ], :order
     end
-
-    can :destroy, User
   end
 end

@@ -1,23 +1,25 @@
 class ProductsController < ApplicationController
-  #before_action :admin_authorize
-
   def index
-      query = params[:query].presence || "*"
-      conditions = {}
-      conditions[:category_id] = params[:category_id] if params[:category_id].present?
-      sort_option = (params[:sort] == "desc" ? { price: :desc } : { price: :asc }) if params[:sort].present?
-      @products = Product.search(query, where: conditions, order: sort_option, page: params[:page], per_page: 8)
+    query = params[:query].presence || "*"
+    conditions = {}
+    conditions[:category_id] = params[:category_id] if params[:category_id].present?
+    conditions[:seller_id] = params[:seller_id] if params[:seller_id].present?
+    conditions[:seller_id] = current_user.id if conditions[:seller_id].nil? && current_user&.seller?
+    @seller=User.find(conditions[:seller_id]) if conditions[:seller_id].present?
+    sort_option = (params[:sort] == "desc" ? { price: :desc } : { price: :asc }) if params[:sort].present?
+    if params[:clear]=="true"
+      conditions={}
+    end
+    @products = Product.search(query, where: conditions, order: sort_option, page: params[:page], per_page: 8)
+        
   end
 
   def show
     @product = Product.find(params[:id])
     @seller = @product.seller
-    if current_user&.user?
+    if current_user&.customer?
       @cart = Cart.find_by(user_id: current_user.id)
       @line_items = @cart.line_items.includes(:product)
-    else
-      @cart = nil
-      @line_items = nil
     end
   end
 
@@ -38,12 +40,11 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    if @product.seller_id == current_user.id
-      @product.destroy
+    if @product.discard  # changed destroy to discarded
       flash.now[:notice] = "Product successfully deleted."
       redirect_to sellers_path
     else
-      flash.now[:alert] = "You are not authorized to delete this product."
+      flash.now[:alert] = "Error deleting the product."
       redirect_to products_path
     end
   end
@@ -74,12 +75,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :img_url, :stock_quantity, :category_id).merge(seller_id: current_user.id)
+    params.require(:product).permit(:name, :description, :price, :img, :stock_quantity, :category_id).merge(seller_id: current_user.id)
   end
 
-  def admin_authorize
-    if current_user&.admin?
-      redirect_to admins_path
-    end
-  end
 end

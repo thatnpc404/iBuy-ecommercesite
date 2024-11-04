@@ -35,7 +35,6 @@ class AddressesController < ApplicationController
   end
 
   def update
-    session[:set_address]=true
     @address=Address.find(params[:id])
     if @address.update(address_params)
       redirect_to addresses_path, notice: "Address was successfully updated."

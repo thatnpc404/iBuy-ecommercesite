@@ -87,7 +87,7 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    cancan (1.6.10)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -111,6 +111,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    discard (1.3.0)
+      activerecord (>= 4.2, < 8)
     drb (2.2.1)
     elastic-transport (8.3.5)
       faraday (< 3)
@@ -201,8 +203,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
-    noticed (2.4.3)
-      rails (>= 6.1.0)
     orm_adapter (0.5.0)
     pagy (9.1.1)
     parallel (1.26.3)
@@ -318,8 +318,6 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.1)
-    sweetalert-rails (1.1.3)
-      railties (>= 3.1.0)
     thor (1.3.2)
     timeout (0.4.1)
     turbo-rails (2.0.11)
@@ -358,17 +356,17 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   brakeman
-  cancan
+  cancancan
   capybara
   debug
   devise
+  discard
   elasticsearch-model
   elasticsearch-rails
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder
   kaminari
-  noticed
   pagy
   pg
   pry
@@ -380,7 +378,6 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
-  sweetalert-rails
   turbo-rails
   tzinfo-data
   web-console

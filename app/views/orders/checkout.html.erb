@@ -8,7 +8,7 @@
         <ul>
           <% @line_items.each do |line_item| %>
             <li>
-              <%= image_tag line_item.product.img_url, width: 50, height: 100 %>
+              <%= image_tag line_item.product.img, width: 50, height: 100 %>
               <%= line_item.product.name %> - Quantity: <%= line_item.quantity %>
               <span>Total: <%= number_to_currency(line_item.product.price * line_item.quantity, unit: '₹', format: '%u%n', delimiter: ',', precision: 2) %></span>
             </li>

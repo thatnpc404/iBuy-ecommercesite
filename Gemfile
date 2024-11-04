@@ -66,8 +66,6 @@ gem "devise"
 # Gemfile
 gem "elasticsearch-rails"
 gem "elasticsearch-model"
-gem 'noticed'
-gem "sweetalert-rails"
 gem "activerecord"
 gem "searchkick"
 # gem "pg"
@@ -76,5 +74,5 @@ gem "rufo"
 gem "pagy"
 gem "kaminari"
 gem "pg"
-gem "cancan"
-
+gem "cancancan"
+gem "discard"

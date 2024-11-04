@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  #before_action :user_authorize
-  #before_action :set_cart_and_items, only: [ :checkout ]
+  authorize_resource class: false
 
   def index
     set_cart_and_items
@@ -17,9 +16,4 @@ class CartsController < ApplicationController
     @line_items = @cart.line_items.includes(:product) if @cart
   end
 
-  def user_authorize
-    unless current_user&.user?
-      redirect_to root_path
-    end
-  end
 end

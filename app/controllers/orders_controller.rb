@@ -1,18 +1,16 @@
 class OrdersController < ApplicationController
-  #before_action :set_order, only: [ :show ]
-  #before_action :user_authorize, only: [ :order_requests, :approve ]
   authorize_resource class: false
 
   def show
     @user=current_user
     @order=Order.find(params[:id])
-    Order.refresh_all_order_statuses
   end
 
-  def index 
+  def index
     @user=current_user
-    @orders = @user.orders.order(created_at: :desc)
+    @orders = Order.order(created_at: :desc).page(params[:page]).per(8)
   end
+
 
   def payment_page
     @address_id=params[:address_id]
@@ -56,6 +54,17 @@ class OrdersController < ApplicationController
     total_price
   end
 
+  def refresh_order_status(order)
+    if order.line_items.all? { |lineitem| lineitem.status == "Dispatched" }
+      order.update(status: "Confirmed")
+    elsif order.line_items.all? { |lineitem| lineitem.status == "Cancelled" }
+      order.update(status: "Cancelled")
+    else
+      order.update(status: "Partial")
+    end
+    order
+  end
+
   def order_requests
     @products = Product.where(seller_id: current_user.id)
     @line_items = LineItem.where(product_id: @products.pluck(:id)).where.not(order_id: nil)
@@ -63,14 +72,13 @@ class OrdersController < ApplicationController
     @orders = Order.where(id: @order_ids)
     @order_details = {}
 
-    # Loop through each order
     @orders.reverse_each do |order|
       order_line_items = []
       associated_line_items = @line_items.where(order_id: order.id)
       associated_line_items.each do |line_item|
         product = Product.find(line_item.product_id)
         order_line_items << {
-          id: line_item.id,  
+          id: line_item.id,
           product_name: product.name,
           line_item_quantity: line_item.quantity,
           status: line_item.status
@@ -80,9 +88,6 @@ class OrdersController < ApplicationController
     end
   end
 
-
-
-
   def approve
     line_item = LineItem.find_by(id: params[:id])
     if line_item
@@ -91,6 +96,7 @@ class OrdersController < ApplicationController
       else
         flash.now[:alert] = "Failed to update line item: #{line_item.errors.full_messages.join(", ")}"
       end
+      @order=refresh_order_status(line_item.order)
     else
       flash.now[:alert] = "Line item not found."
     end
@@ -99,7 +105,6 @@ class OrdersController < ApplicationController
 
   def seller_cancel
     line_item = LineItem.find_by(id: params[:id])
-
     if line_item
       if line_item.update(status: "Cancelled")
         line_item.product.update(stock_quantity: line_item.product.stock_quantity+line_item.quantity)
@@ -107,6 +112,7 @@ class OrdersController < ApplicationController
       else
         flash.now[:alert] = "Failed to update line item: #{line_item.errors.full_messages.join(", ")}"
       end
+      @order=refresh_order_status(line_item.order)
     else
       flash.now[:alert] = "Line item not found."
     end
@@ -121,28 +127,9 @@ class OrdersController < ApplicationController
         line_item.product.update(stock_quantity: line_item.quantity+line_item.product.stock_quantity)
       end
       redirect_to orders_path
+      @order=refresh_order_status(@order)
     else
       flash[:alert]="There was a problem cancelling the order !"
-    end
-  end
-
-  private
-  def order_params
-    params.require(:order).permit(:total_price, :status)
-  end
-
-
-  def set_order
-    @order = Order.find_by(id: params[:id])
-    if !@order
-      flash.now[:alert] = "Order not found."
-      redirect_to root_path
-    end
-  end
-
-  def user_authorize
-    unless current_user&.seller?
-      redirect_to root_path
     end
   end
 end
