@@ -1,6 +1,5 @@
 class LineItemsController < ApplicationController
   authorize_resource class: false
-
   def show
   end
 
@@ -56,5 +55,4 @@ class LineItemsController < ApplicationController
   def line_item_params
     params.require(:line_item).permit(:product_id, :order_id, :cart_id, :quantity, :price, :status)
   end
-
 end

@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h1 class="text-center mb-4">Your Orders</h1>
-
+    <%= stylesheet_link_tag "pagination", media:"all" %>
     <% if @orders.any? %>
         <div class="list-group">
             <% @orders.each do |order| %>

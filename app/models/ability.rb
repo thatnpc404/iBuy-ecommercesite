@@ -11,7 +11,7 @@ class Ability
     if user.customer?
       can [ :index, :show, :create, :new, :update, :destroy ], :product
       can [ :index, :show, :payment_page, :checkout, :create, :destroy ], :order
-      can :manage, :lineitem
+      can :manage, :line_item
       can :manage, :cart
       can :manage, :address
     end

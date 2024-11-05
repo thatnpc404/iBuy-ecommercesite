@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :orders
-    has_many :products, foreign_key: "seller_id"
+    has_many :products, foreign_key: "seller_id", dependent: :destroy
     has_many :addresses, foreign_key: "user_id", dependent: :destroy
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable

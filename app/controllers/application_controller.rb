@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access denied: #{exception.message}"
-    redirect_to root_path # or any other path you want to redirect to
+    redirect_to root_path 
   end
 end

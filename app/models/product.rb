@@ -14,7 +14,7 @@ class Product < ApplicationRecord
 
   def search_data
     return {} if discarded?
-    { 
+    {
       name: name,
       description: description,
       price: price,

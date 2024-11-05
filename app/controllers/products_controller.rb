@@ -41,10 +41,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.discard  # changed destroy to discarded
       flash.now[:notice] = "Product successfully deleted."
-      redirect_to sellers_path
+      redirect_to products_path
     else
       flash.now[:alert] = "Error deleting the product."
-      redirect_to products_path
+      render :show
     end
   end
 
@@ -65,15 +65,14 @@ class ProductsController < ApplicationController
   end
 
 
-  def seller_products
-    @seller=User.find(params[:id])
-    @products=@seller.products
-  end
+  # def seller_products
+  #   @seller=User.find(params[:id])
+  #   @products=@seller.products
+  # end
 
   private
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :img, :stock_quantity, :category_id).merge(seller_id: current_user.id)
   end
-
 end

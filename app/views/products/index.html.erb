@@ -41,7 +41,7 @@
 <% else %>
   <div class="row">
     <% @products.each do |product| %>
-
+    <% if product.kept? %>
       <div class="col-md-3 mb-4">
         <div class="card h-100">
           <% if product.img.attached? %>
@@ -67,6 +67,7 @@
             </p>
           </div>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>
